@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Walmart Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f8f8f8;
+    }
+
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+
+    .item {
+      margin-top: 15px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #fff;
+    }
+
+    .cart {
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px dashed #999;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>🛒 Walmart Store</h1>
+
+  <input id="searchInput" placeholder="Search for item like milk, bread, oil..." />
+  <button onclick="searchItem()">🔍 Find</button>
+  <button onclick="fetchInventory()">📦 View Full Inventory</button>
+
+  <div id="result"></div>
+
+  <div id="cart" class="cart">
+    <h3>🧾 Cart</h3>
+    <ul id="cartItems"></ul>
+  </div>
+
+<script>
+  let cart = {};
+
+  function searchItem() {
+    const item = document.getElementById("searchInput").value;
+    fetch(`/find?item=${item}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.error) {
+          document.getElementById("result").innerHTML = `<p style="color:red">${data.error}</p>`;
+        } else {
+          document.getElementById("result").innerHTML = `
+            <div class="item">
+              <p><strong>Item:</strong> ${item}</p>
+              <p><strong>Available:</strong> ${data.count}</p>
+              <input type="number" id="qty" min="1" max="${data.count}" placeholder="Qty to buy" />
+              <button onclick="addToCart('${item}', ${data.count})">Add to Cart</button>
+            </div>`;
+        }
+      });
+  }
+
+  function addToCart(item, maxQty) {
+    const qty = parseInt(document.getElementById("qty").value);
+    if (!qty || qty < 1) return alert("Enter valid quantity");
+    if (qty > maxQty) return alert("❌ Not enough stock!");
+
+    cart[item] = (cart[item] || 0) + qty;
+    updateCartUI();
+  }
+
+  function updateCartUI() {
+    const ul = document.getElementById("cartItems");
+    ul.innerHTML = "";
+    for (let item in cart) {
+      const li = document.createElement("li");
+      li.textContent = `${item} - ${cart[item]} units`;
+      ul.appendChild(li);
+    }
+
+    if (Object.keys(cart).length > 0) {
+      const checkoutBtn = document.createElement("button");
+      checkoutBtn.textContent = "🛍️ Checkout";
+      checkoutBtn.onclick = checkoutCart;
+      ul.appendChild(document.createElement("br"));
+      ul.appendChild(checkoutBtn);
+    }
+  }
+
+  function checkoutCart() {
+    const promises = [];
+
+    for (let item in cart) {
+      promises.push(
+        fetch('/purchase', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ item, qty: cart[item] })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            alert(`❌ ${item}: ${data.error}`);
+          } else {
+            alert(`✅ ${item}: Purchased. Remaining: ${data.remaining}`);
+          }
+        })
+      );
+    }
+
+    Promise.all(promises).then(() => {
+      cart = {};
+      updateCartUI();
+      fetchInventory(); // Refresh stock after checkout
+    });
+  }
+
+  function formatInventory(data, indent = 0) {
+    let html = "";
+    for (const key in data) {
+      const val = data[key];
+      if (typeof val === "object" && val !== null) {
+        if ('count' in val) {
+          html += `<div style="margin-left:${indent}px">🛒 <strong>${key}</strong>: ${val.count}</div>`;
+        } else {
+          html += `<div style="margin-left:${indent}px">📂 <strong>${key}</strong></div>`;
+          html += formatInventory(val, indent + 20);
+        }
+      }
+    }
+    return html;
+  }
+
+  function fetchInventory() {
+    fetch('/inventory')
+      .then(res => res.json())
+      .then(data => {
+        const html = formatInventory(data);
+        document.getElementById("result").innerHTML = `<div>${html}</div>`;
+      });
+  }
+</script>
+</body>
+</html>

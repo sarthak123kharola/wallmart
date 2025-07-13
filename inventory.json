@@ -1,0 +1,181 @@
+{
+  "root": {
+    "bakery": {
+      "bread": {
+        "white_bread": { "count": 50 },
+        "whole_wheat_bread": { "count": 35 },
+        "bagels": { "count": 20 }
+      },
+      "cakes": {
+        "chocolate_cake": { "count": 15 },
+        "cheesecake": { "count": 10 }
+      },
+      "pastries": {
+        "croissant": { "count": 25 },
+        "danish": { "count": 18 }
+      }
+    },
+    "dairy": {
+      "milk": {
+        "whole_milk": { "count": 60 },
+        "skim_milk": { "count": 45 },
+        "almond_milk": { "count": 30 }
+      },
+      "cheese": {
+        "cheddar": { "count": 25 },
+        "mozzarella": { "count": 20 }
+      },
+      "butter": {
+        "salted_butter": { "count": 40 },
+        "unsalted_butter": { "count": 35 }
+      }
+    },
+    "meat": {
+      "chicken": {
+        "breast": { "count": 50 },
+        "legs": { "count": 60 }
+      },
+      "beef": {
+        "ground_beef": { "count": 45 },
+        "steak": { "count": 30 }
+      },
+      "pork": {
+        "bacon": { "count": 25 },
+        "sausages": { "count": 20 }
+      }
+    },
+    "produce": {
+      "fruits": {
+        "apples": { "count": 100 },
+        "bananas": { "count": 80 },
+        "grapes": { "count": 60 }
+      },
+      "vegetables": {
+        "carrots": { "count": 75 },
+        "broccoli": { "count": 40 },
+        "spinach": { "count": 50 }
+      }
+    },
+    "beverages": {
+      "soda": {
+        "coca_cola": { "count": 90 },
+        "pepsi": { "count": 85 }
+      },
+      "juice": {
+        "orange_juice": { "count": 60 },
+        "apple_juice": { "count": 55 }
+      },
+      "coffee_and_tea": {
+        "green_tea": { "count": 40 },
+        "instant_coffee": { "count": 35 }
+      }
+    },
+    "canned_goods": {
+      "vegetables": {
+        "corn": { "count": 50 },
+        "beans": { "count": 45 }
+      },
+      "soups": {
+        "chicken_noodle": { "count": 30 },
+        "tomato_soup": { "count": 28 }
+      }
+    },
+    "pasta_and_sauces": {
+      "pasta": {
+        "spaghetti": { "count": 70 },
+        "macaroni": { "count": 65 }
+      },
+      "sauces": {
+        "marinara": { "count": 50 },
+        "alfredo": { "count": 45 }
+      }
+    },
+    "snacks": {
+      "chips": {
+        "potato_chips": { "count": 80 },
+        "nachos": { "count": 70 }
+      },
+      "cookies": {
+        "chocolate_chip": { "count": 60 },
+        "oatmeal": { "count": 50 }
+      },
+      "candy": {
+        "gummy_bears": { "count": 40 },
+        "chocolates": { "count": 55 }
+      }
+    },
+    "housewares": {
+      "cleaning": {
+        "detergent": { "count": 30 },
+        "bleach": { "count": 25 }
+      },
+      "kitchen": {
+        "nonstick_pan": { "count": 20 },
+        "cutting_board": { "count": 15 }
+      }
+    },
+    "electronics": {
+      "phones": {
+        "smartphone": { "count": 10 },
+        "feature_phone": { "count": 8 }
+      },
+      "tv": {
+        "led_tv": { "count": 12 },
+        "oled_tv": { "count": 6 }
+      },
+      "laptops": {
+        "gaming_laptop": { "count": 5 },
+        "business_laptop": { "count": 7 }
+      }
+    },
+    "clothing": {
+      "men": {
+        "shirts": { "count": 40 },
+        "pants": { "count": 35 }
+      },
+      "women": {
+        "dresses": { "count": 30 },
+        "tops": { "count": 25 }
+      },
+      "kids": {
+        "tshirts": { "count": 50 },
+        "shorts": { "count": 40 }
+      }
+    },
+    "toys_and_sports": {
+      "toys": {
+        "lego": { "count": 20 },
+        "action_figures": { "count": 25 }
+      },
+      "sports": {
+        "basketball": { "count": 15 },
+        "football": { "count": 12 }
+      }
+    },
+    "hardware_and_paint": {
+      "tools": {
+        "hammer": { "count": 15 },
+        "screwdriver_set": { "count": 10 }
+      },
+      "paint": {
+        "wall_paint": { "count": 20 },
+        "spray_paint": { "count": 18 }
+      }
+    },
+    "jewelry_and_photo": {
+      "jewelry": {
+        "necklace": { "count": 10 },
+        "earrings": { "count": 12 }
+      },
+      "photo": {
+        "photo_frame": { "count": 20 },
+        "album": { "count": 15 }
+      }
+    },
+    "infants_and_toddlers": {
+      "diapers": { "count": 60 },
+      "baby_food": { "count": 55 },
+      "baby_lotion": { "count": 35 }
+    }
+  }
+}
